@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-flask-app
+  labels:
+    app: python-flask-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: python-flask-app
+  template:
+    metadata:
+      labels:
+        app: python-flask-app
+    spec:
+      containers:
+      - name: python-flask-app
+        image: <your-dockerhub-username>/python-flask-app:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: VERSION
+          value: "1.0.0"
